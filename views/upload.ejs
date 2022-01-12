@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+
+<body>
+
+
+
+
+    <div class="container">
+        <h1>file upload </h1>
+        <%= typeof msg !='undefined' ? msg : '' ;%>
+            <form action="/upload" method='POST' enctype="multipart/form-data">
+                <div>
+                    <label for="address">Address</label>
+                    <input type="text" name="address">
+                </div>
+                <div>
+                    <label for="city">City</label>
+                    <input type="text" name="city">
+                </div>
+                <br>
+                <div class="file-field input-field">
+                    <div class="btn grey">
+                        <span>File</span>
+                        <input name='img' type="file">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+
+                </div>
+                <br>
+                <button type="submit" class='btn'>Submit</button>
+            </form>
+            <br>
+            <a href="/" class="btn">Back to Home</a>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</body>
+
+
+</html>
