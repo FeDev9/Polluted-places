@@ -45,6 +45,9 @@ This app lets you report polluted places near you filling out a short form.
 ### Built With
 
 * Node.js
+* * Multer
+* * Express
+* * MySQL2
 
 
 
