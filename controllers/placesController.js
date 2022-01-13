@@ -28,14 +28,15 @@ module.exports = function (app, upload, db) {
                     msg: err
                 });
             }
-            if (req.file == undefined) {
+            if (req.file == undefined || req.body.address == '' || req.body.city == '') {
                 res.render('upload', {
-                    msg: 'Error : no file selected'
+                    msg: 'Error : fill all fields'
                 })
             }
             else {
 
                 placeModel.setPlaces(db, res, req)
+
             }
         })
     })
