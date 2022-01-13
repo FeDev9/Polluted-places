@@ -1,4 +1,4 @@
-# Polluted-places
+# Polluted places App
 <div id="top"></div>
 
 <!-- PROJECT SHIELDS -->
@@ -116,4 +116,4 @@ Project Link: [https://github.com/fedev9/Polluted-places](https://github.com/fed
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/federico-cecconi-27951619a/
 [product-screenshot]: /public/img/homepage.png
-[above-screenshot]: /public/img/contact.png
+[above-screenshot]: /public/img/form.png
