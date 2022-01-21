@@ -1,80 +1,63 @@
-const fs = require('fs');
-
-exports.getPlaces = (db, res, req) => {
-
-    var sql = "SELECT * FROM places";
-
-    return db.query(sql, (err, result, fields) => {
-
-        if (err) {
-            res.render('home', {
-                msg: err
-            });
-        }
-        else {
-            res.render('home', { places: result });
-        }
-    });
-}
-
-exports.setPlaces = (db, res, req) => {
-
-    var post = {
-        address: req.body.address,
-        img: req.file.filename,
-        city: req.body.city
-
-    }
-
-    let sql = "INSERT INTO places SET ?";
-
-    return db.query(sql, post, (err, result) => {
-
-        if (err) {
-
-            res.render('upload', {
-                msg: err
-            });
+const res = require('express/lib/response');
+const db = require('../database');
 
 
-        }
-        else {
-            res.redirect('/');
-        }
-    })
-}
+module.exports = {
 
-exports.deletePlaces = (db, res, req) => {
+    getPlaces: (cb) => {
+        var sql = "SELECT * FROM places";
 
-    const sql = `SELECT * FROM places WHERE id = ${req.params.id}`;
+        db.query(sql, (err, result) => {
+            try {
+                return cb(result);
 
-    db.query(sql, (err, result, fields) => {
-        if (err) {
-            res.render('upload', {
-                msg: err
-            });
-        }
-        else {
+            } catch (err) {
+                res.render('home', {
+                    msg: err
+                });
+            }
+        });
+    },
 
-            console.log(result[0].img);
-            const filePath = 'public/uploads/' + result[0].img;
-            fs.unlinkSync(filePath);
-        }
+    addPlace: (placeDetails, cb) => {
 
+        db.query("INSERT INTO places SET ?", placeDetails, (err, results) => {
 
-    })
-
-    db.query(`DELETE FROM places WHERE id = ${req.params.id}`,
-        function (err, result, fields) {
-            if (err) {
+            try {
+                return cb(results);
+            } catch (err) {
                 res.render('upload', {
                     msg: err
                 });
-            } else {
+            }
+        })
+    },
 
-                console.log("deleted Record: " + result.affectedRows);
-                res.redirect('/');
+    getPlace: (placeDetails, cb) => {
 
+        db.query('SELECT * FROM places WHERE ?', placeDetails, (err, results) => {
+            try {
+                return cb(results);
+            } catch (err) {
+                res.render('home', {
+                    msg: err
+                });
             }
         });
+    },
+
+    deletePlace: (placeDetails, cb) => {
+
+        db.query('DELETE FROM places WHERE ?', placeDetails, (err, results) => {
+            try {
+                return cb(results);
+            } catch (err) {
+                res.render('home', {
+                    msg: err
+                });
+            }
+
+        })
+
+    }
 }

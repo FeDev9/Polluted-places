@@ -1,7 +1,9 @@
 const db = require('../database');
 const multer = require('multer');
-const fs = require('fs');
 const path = require('path');
+const fs = require('fs');
+
+const model = require('../models/placeModel');
 
 //Set storage engine
 const storage = multer.diskStorage({
@@ -46,69 +48,37 @@ module.exports = {
     upload: (req, res) => {
         upload(req, res, (err) => {
 
-            try {
-
-                var post = {
-                    address: req.body.address,
-                    img: req.file.filename,
-                    city: req.body.city
-                }
-
-                db.query("INSERT INTO places SET ?", post, (err, result) => {
-
-                    try {
-                        res.redirect('/');
-                    } catch (err) {
-                        res.render('upload', {
-                            msg: err
-                        });
-                    }
-                })
-
-            } catch (err) {
-                res.render('upload', {
-                    msg: err
-                });
+            var placeDetails = {
+                address: req.body.address,
+                img: req.file.filename,
+                city: req.body.city
             }
 
+            model.addPlace(placeDetails, (results) => {
+                res.redirect('/');
+            });
         });
-
     },
 
     delete: (req, res) => {
-        const sql = `SELECT * FROM places WHERE id = ${req.params.id}`;
 
-        try {
-            db.query(sql, (err, result) => {
-                try {
-                    const filePath = 'public/uploads/' + result[0].img;
-                    fs.unlinkSync(filePath);
-                } catch (err) {
-                    res.render('upload', {
-                        msg: err
-                    });
-                }
+        var placeDetails = {
+            id: req.params.id
+        }
 
+        model.getPlace(placeDetails, (results) => {
+
+            const filePath = 'public/uploads/' + results[0].img;
+            fs.unlinkSync(filePath);
+
+            model.deletePlace(placeDetails, (results) => {
+
+                console.log("deleted Record: " + results.affectedRows);
+                res.redirect('/');
 
             })
 
-            db.query(`DELETE FROM places WHERE id = ${req.params.id}`,
-                (err, result, fields) => {
-                    try {
-                        console.log("deleted Record: " + result.affectedRows);
-                        res.redirect('/');
-                    } catch (error) {
-                        res.render('upload', {
-                            msg: err
-                        });
-                    }
-                });
-
-        } catch (err) {
-            res.render('upload', {
-                msg: err
-            });
-        }
+        });
 
 
     }

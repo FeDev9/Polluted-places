@@ -1,13 +1,13 @@
 # ************************************************************
 # Sequel Ace SQL dump
-# Version 20021
+# Version 20025
 #
 # https://sequel-ace.com/
 # https://github.com/Sequel-Ace/Sequel-Ace
 #
 # Host: localhost (MySQL 5.7.34)
 # Database: placespolluted
-# Generation Time: 2022-01-13 08:08:33 +0000
+# Generation Time: 2022-01-21 11:30:01 +0000
 # ************************************************************
 
 
@@ -27,20 +27,20 @@ DROP TABLE IF EXISTS `places`;
 
 CREATE TABLE `places` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `address` text,
-  `img` text,
-  `city` text,
+  `address` text NOT NULL,
+  `img` text NOT NULL,
+  `city` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8;
 
 LOCK TABLES `places` WRITE;
 /*!40000 ALTER TABLE `places` DISABLE KEYS */;
 
 INSERT INTO `places` (`id`, `address`, `img`, `city`)
 VALUES
-	(58,'Via Rossi 21','1642006057955.jpg','Milano'),
-	(59,'Via Neri 15','1642006072183.jpeg','Genova'),
-	(60,'Via Verdi 39','1642006100196.jpg','Pisa');
+	(89,'Via Neri 15','1642764523517.jpg','Milano'),
+	(90,'via Rossi 14','1642764543220.jpg','Genova'),
+	(91,'Via Verdi 39','1642764557823.jpg','Pisa');
 
 /*!40000 ALTER TABLE `places` ENABLE KEYS */;
 UNLOCK TABLES;
