@@ -59,6 +59,7 @@ This app lets you report polluted places near you filling out a short form.
 ## Getting Started
 
 Install all dependencies that are in package.json and download the database in public/Database Export folder.
+Rename .env.sample file in .env and isert dabatase details.
 
 
 <!-- USAGE EXAMPLES -->
