@@ -64,7 +64,7 @@ exports.deletePlaces = (db, res, req) => {
 
     })
 
-    return db.query(`DELETE FROM places WHERE id = ${req.params.id}`,
+    db.query(`DELETE FROM places WHERE id = ${req.params.id}`,
         function (err, result, fields) {
             if (err) {
                 res.render('upload', {
