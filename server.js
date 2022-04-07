@@ -17,11 +17,12 @@ app.use(express.static('./public'));
 app.use(bodyParser.json());
 
 //fire controllers
-const pagesRoute = require('./routes/Pages');
-const placesRoute = require('./routes/Places');
+const pagesRoute = require('./routes/Pages.js');
+const placesRoute = require('./routes/Places.js');
 
 app.use('/', pagesRoute)
 app.use('/places', placesRoute);
+
 
 //listen port
 app.listen(3000);
