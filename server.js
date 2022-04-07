@@ -17,8 +17,8 @@ app.use(express.static('./public'));
 app.use(bodyParser.json());
 
 //fire controllers
-const pagesRoute = require('./routes/pages');
-const placesRoute = require('./routes/places');
+const pagesRoute = require('./routes/Pages');
+const placesRoute = require('./routes/Places');
 
 app.use('/', pagesRoute)
 app.use('/places', placesRoute);
