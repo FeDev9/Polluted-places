@@ -3,6 +3,8 @@ const path = require('path');
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 
+var PORT = process.env.PORT || 5000;
+
 var app = express();
 
 //create connection 
@@ -25,4 +27,4 @@ app.use('/places', placesRoute);
 
 
 //listen port
-app.listen(process.env.PORT, () => console.log(`All listening on ${process.env.PORT}`));
+app.listen(PORT, () => console.log(`All listening on ${PORT}`));
