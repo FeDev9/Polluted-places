@@ -25,5 +25,4 @@ app.use('/places', placesRoute);
 
 
 //listen port
-app.listen(3000);
-console.log('You a listening to port 3000');
+app.listen(process.env.PORT, () => console.log(`All listening on ${process.env.PORT}`));
